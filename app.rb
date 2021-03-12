@@ -2,7 +2,8 @@ require "rubygems"
 require "minitest/autorun"
 
 class PiglatinTranslatorTest < MiniTest::Test
-  ARR = ['a','e','i','o','u']
+  VOWELS = %w[a e i o u]
+
   def test_pig_becomes_igpay
     assert_equal "igpay", translate("pig")
   end
@@ -24,10 +25,10 @@ class PiglatinTranslatorTest < MiniTest::Test
   end
 
   def translate(word)
-    if ARR.include?(word[0])
+    if VOWELS.include?(word[0])
       "#{word + 'yay'}"
     else
-      i = word.chars.find_index {|item| ARR.include?(item)}
+      i = word.chars.find_index { |item| VOWELS.include?(item) }
       "#{word[i..-1] + word[0...i] + 'ay'}" 
     end
   end
