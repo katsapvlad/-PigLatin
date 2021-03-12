@@ -24,12 +24,25 @@ class PiglatinTranslatorTest < MiniTest::Test
     assert_equal "angestray", translate("strange")
   end
 
-  def translate(word)
-    if VOWELS.include?(word[0])
-      "#{word + 'yay'}"
-    else
-      i = word.chars.find_index { |item| VOWELS.include?(item) }
-      "#{word[i..-1] + word[0...i] + 'ay'}" 
+  def test_empty_box_becomes_emptyyay_oxbay
+    assert_equal "emptyyay oxbay", translate("empty box")
+  end
+
+  def test_one_more_empty_box_becomes_oneyay_oremay_emptyyay_oxbay
+    assert_equal "oneyay oremay emptyyay oxbay", translate("one more empty box")
+  end
+
+  def translate(str)
+    str = str.split(' ')
+    final_str = ''
+    str.each do |word|
+      if VOWELS.include?(word[0])
+        final_str += "#{word + 'yay'}" + ' '
+      else
+        i = word.chars.find_index { |item| VOWELS.include?(item) }
+        final_str += "#{word[i..-1] + word[0...i] + 'ay'}" + ' '
+      end
     end
+    final_str.strip
   end
 end
