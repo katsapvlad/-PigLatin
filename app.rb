@@ -2,7 +2,7 @@ require "rubygems"
 require "minitest/autorun"
 
 class PiglatinTranslatorTest < MiniTest::Test
-  ARR = ['a','e','i','o','u']
+  ARR = ['a','e','i','o','u'] # Please have a look at ```%w()``` syntax in ruby. Also let's rename constant to VOWELS. Please add a new line after constant.
   def test_pig_becomes_igpay
     assert_equal "igpay", translate("pig")
   end
@@ -27,7 +27,7 @@ class PiglatinTranslatorTest < MiniTest::Test
     if ARR.include?(word[0])
       "#{word + 'yay'}"
     else
-      i = word.chars.find_index {|item| ARR.include?(item)}
+      i = word.chars.find_index {|item| ARR.include?(item)} # Please have a look at ruby styleguids https://github.com/rubocop/ruby-style-guide#spaces-braces
       "#{word[i..-1] + word[0...i] + 'ay'}" 
     end
   end
